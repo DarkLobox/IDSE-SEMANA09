@@ -15,7 +15,8 @@ public class NaveController : MonoBehaviour
     
     public GameObject bala;
 
-    
+    public GameObject explosion;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -90,11 +91,15 @@ public class NaveController : MonoBehaviour
     {
         if (collision.gameObject.tag == "portal")
         {
+            this.gameObject.SetActive(false);
             texto.text = "GANASTE";
         }
         if (collision.gameObject.tag == "enemigo")
         {
+            GameObject efecto = Instantiate(explosion,transform.position,transform.rotation);
+            efecto.SetActive(true);
             this.gameObject.SetActive(false);
+            texto.text = "PERDISTE";
         }
     }
 }
